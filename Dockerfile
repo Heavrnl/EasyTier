@@ -8,7 +8,6 @@ RUN echo "packages:\n  - 'frontend'\n  - 'frontend-lib'" > /app/pnpm-workspace.y
 RUN cd /app && pnpm install
 RUN cd /app && pnpm --filter easytier-frontend-lib build
 RUN cd /app && pnpm --filter easytier-frontend build
-RUN echo "--- Listing built frontend assets in stage 1 ---" && ls -la /app/frontend/dist
 
 # Stage 2: Build the Rust backend
 FROM --platform=linux/amd64 debian:bullseye AS rust-builder
@@ -18,7 +17,6 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 WORKDIR /app
 COPY . .
 COPY --from=frontend-builder /app/frontend/dist /app/easytier-web/frontend/dist
-RUN echo "--- Listing copied frontend assets in stage 2 ---" && ls -la /app/easytier-web/frontend/dist
 WORKDIR /app/easytier-web
 RUN cargo build --release --features embed
 
