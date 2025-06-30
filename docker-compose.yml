@@ -1,5 +1,6 @@
 services:
   easytier-web:
+    image: heavrnl/easytier-web:latest
     platform: linux/amd64
     build:
       context: .
