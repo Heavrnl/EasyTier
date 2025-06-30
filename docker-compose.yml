@@ -9,7 +9,7 @@ services:
       - "11211:11211"       # API Server
       - "22020:22020/udp"   # Config Server
     volumes:
-      - easytier_data:/data
+      - ./easytier_data:/data
     restart: unless-stopped
 
 volumes:
