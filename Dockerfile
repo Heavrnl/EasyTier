@@ -21,9 +21,7 @@ RUN cargo build --release --features embed
 # Stage 3: Create the final image
 FROM debian:bullseye-slim
 WORKDIR /app
-COPY --from=rust-builder /app/easytier-web/target/release/easytier-web /usr/local/bin/easytier-web
-COPY --from=rust-builder /app/easytier-web/locales /app/locales
-COPY --from=rust-builder /app/easytier-web/resources /app/resources
+COPY --from=rust-builder /app/target/release/easytier-web /usr/local/bin/easytier-web
 EXPOSE 11211
 EXPOSE 8081
 EXPOSE 22020/udp
