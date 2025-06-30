@@ -1,0 +1,20 @@
+# Ignore git
+.git
+.gitignore
+.gitmodules
+
+# Ignore IDE files
+.vscode/
+*.code-workspace
+
+# Ignore build artifacts
+target/
+**/target/
+
+# Ignore node_modules directories
+**/node_modules
+
+
+# Ignore log files and local database
+*.log
+*.db

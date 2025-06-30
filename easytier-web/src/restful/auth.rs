@@ -115,12 +115,12 @@ mod post {
         Json(req): Json<RegisterNewUser>,
     ) -> Result<Json<Void>, HttpHandleError> {
         // 调用CaptchaUtil的静态方法验证验证码是否正确
-        if !CaptchaUtil::ver(&req.captcha, &captcha_session).await {
-            return Err((
-                StatusCode::BAD_REQUEST,
-                other_error(format!("captcha verify error, input: {}", req.captcha)).into(),
-            ));
-        }
+        // if !CaptchaUtil::ver(&req.captcha, &captcha_session).await {
+        //     return Err((
+        //         StatusCode::BAD_REQUEST,
+        //         other_error(format!("captcha verify error, input: {}", req.captcha)).into(),
+        //     ));
+        // }
 
         if let Err(e) = auth_session.backend.register_new_user(&req).await {
             tracing::error!("Failed to register new user: {:?}", e);
